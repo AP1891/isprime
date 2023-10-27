@@ -1,22 +1,29 @@
 #include <iostream>
+using namespace std;
 
-int main(){
-
+int main() {
   int number;
-  std::cout << "Enter an integer: ";
-  std::cin >> number;
+  cout << "Enter an integer: ";
+  cin >> number;
 
-  // test divisors of number, if a divisor other than 1 and number is
-  // found, then number is not prime.
+  // If the number is less than 2, it's not prime.
+  if (number < 2) {
+    cout << "\nNot prime\n";
+    return 0;
+  }
+
   bool isPrime = true;
-  for (int i = 2; i <= number; i++)
-    if (!(number % i))
+  for (int i = 2; i * i <= number; i++) {
+    if (number % i == 0) {
       isPrime = false;
+      break; // Exit the loop as soon as a divisor is found.
+    }
+  }
 
   if (isPrime)
-    std::cout << "Prime\n";
+    cout << "\nPrime\n";
   else
-    std::cout << "Not prime\n";
-  
+    cout << "\nNot prime\n";
+
   return 0;
 }
